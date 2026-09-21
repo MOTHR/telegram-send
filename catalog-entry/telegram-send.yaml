@@ -1,7 +1,7 @@
 name: telegram-send
 repo: https://github.com/MOTHR/telegram-send
-sha: 032894ed6b3deeafd257812ae609469bb77f1c75
-description: Safe Telegram Bot API text sends as a model tool — proper URL-encoding for all
+sha: 5f8b44546e8321f2cc44c1eac626e3eb86318e1f
+description: Safe Telegram Bot API text sends as a model tool (v1.1.0 security-audited) — proper URL-encoding for all
   characters (raw curl -d corrupts '+' into spaces), round-trip verification against the text
   Telegram echoes back, profile-scoped bot-token resolution via the secret scope (never raw
   os.environ under multiplex), and 4096-char chunking. Stdlib only, opt-in via token presence.

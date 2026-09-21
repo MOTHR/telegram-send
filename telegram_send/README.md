@@ -2,7 +2,29 @@
 
 Safe outbound Telegram Bot API text sends for Hermes Agent agents.
 
-## Why this exists
+## In plain language
+
+This plugin is a **safe mailbox for agents that need to reach a Telegram chat**.
+An agent says "send this text to chat X", and the plugin delivers it through
+your bot — with safety nets:
+
+1. **Nothing gets mangled.** Hand-rolled `curl` sends corrupt `+` into spaces;
+   this plugin encodes properly, so the text arrives exactly as intended.
+2. **Delivery is verified.** Telegram echoes the delivered text back; the plugin
+   compares it and fails loudly on any difference instead of silently
+   accepting a corrupted message.
+3. **The bot token stays secret.** It is read from the profile's secret store
+   and never appears in logs or error messages.
+4. **Only pre-approved recipients.** The agent cannot send secrets to arbitrary
+   chats — only the chats configured by the operator.
+5. **Long texts and hiccups are handled.** Texts over Telegram's 4096-char
+   limit are split at sensible boundaries; transient rate-limits are retried
+   automatically.
+
+Think of it as one hardened, confirmation-gated drop box instead of every
+agent building its own error-prone postal route.
+
+## Why this exists (technical)
 
 Agents sending Telegram messages via raw `curl -d "text=..."` **corrupt text**:
 in `application/x-www-form-urlencoded`, a literal `+` is decoded as a **SPACE**
