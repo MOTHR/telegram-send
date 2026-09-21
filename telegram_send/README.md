@@ -55,6 +55,7 @@ plugins:
     telegram-send:
       settings:
         default_chat_id: "260277354"   # used when the tool is called without chat_id
+        allowed_chat_ids: ["260277354"] # optional whitelist; when set, ONLY these chats are sendable
         token_env: "TELEGRAM_BOT_TOKEN" # env var name in the profile secret scope
         max_message_length: 4096
 ```

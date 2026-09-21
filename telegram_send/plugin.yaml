@@ -1,5 +1,5 @@
 name: telegram-send
-version: 1.0.0
+version: 1.1.0
 description: Safe Telegram Bot API text sends — proper URL-encoding for all characters, profile-scoped bot-token resolution, delivery verification.
 author: Dirk Schoenhofer (MOTHR)
 license: MIT
