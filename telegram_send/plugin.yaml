@@ -15,7 +15,7 @@ config_schema:
   token_env:
     type: str
     default: "TELEGRAM_BOT_TOKEN"
-    description: "Env var name holding the bot token of the active profile (resolved via the profile secret scope, never raw os.environ under multiplex)."
+    description: "Env var name holding the bot token of the active profile (resolved via the profile secret scope at call time)."
   max_message_length:
     type: int
     default: 4096
