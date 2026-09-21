@@ -24,6 +24,28 @@ your bot — with safety nets:
 Think of it as one hardened, confirmation-gated drop box instead of every
 agent building its own error-prone postal route.
 
+## How it fits the Hermes security stack
+
+This plugin is **one of three complementary layers** — it replaces none of the
+others, and none of the others replace it:
+
+1. **Transport — this plugin (telegram-send).** *"Does what was sent actually
+   arrive?"* Correct encoding, round-trip verification against the Telegram
+   echo, token never leaves the secret store, only pre-approved recipients.
+   Guards against **accidental** corruption and transport-level leaks.
+2. **Outbound content — Privacy Shield.** *"May this content leave at all?"*
+   Masks tokens/PII in outgoing message text before it hits the channel.
+   A send made through `telegram_send` is still subject to Privacy Shield
+   masking — by design, not by accident.
+3. **Inbound content — Injection Shield.** *"Is incoming content trying to
+   manipulate the agent?"* Filters prompt injections arriving through
+   messaging channels.
+
+Together: **ingress → content → egress.** A real incident (2026-09-21) proved
+the point: both Shields were clean, yet a corrupted message still arrived —
+because the *transport* was the missing link. A security chain is only as
+strong as the layer nobody built yet.
+
 ## Why this exists (technical)
 
 Agents sending Telegram messages via raw `curl -d "text=..."` **corrupt text**:
