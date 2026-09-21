@@ -1,0 +1,10 @@
+[project]
+name = "hermes-telegram-send"
+version = "1.0.0"
+description = "Hermes plugin: safe Telegram Bot API sends with proper URL-encoding and round-trip verification"
+requires-python = ">=3.11"
+# stdlib only — no runtime dependencies
+dependencies = []
+
+[project.entry-points."hermes_agent.plugins"]
+telegram-send = "telegram_send:register"

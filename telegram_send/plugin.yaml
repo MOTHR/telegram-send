@@ -1,0 +1,22 @@
+name: telegram-send
+version: 1.0.0
+description: Safe Telegram Bot API text sends — proper URL-encoding for all characters, profile-scoped bot-token resolution, delivery verification.
+author: Dirk Schoenhofer (MOTHR)
+license: MIT
+homepage: https://github.com/MOTHR/telegram-send
+tags: [telegram, messaging, encoding, notification]
+provides_tools:
+  - telegram_send
+config_schema:
+  default_chat_id:
+    type: str
+    default: ""
+    description: "Default chat_id used when the tool is called without one (optional)."
+  token_env:
+    type: str
+    default: "TELEGRAM_BOT_TOKEN"
+    description: "Env var name holding the bot token of the active profile (resolved via the profile secret scope, never raw os.environ under multiplex)."
+  max_message_length:
+    type: int
+    default: 4096
+    description: "Telegram sendMessage hard limit for unformatted text messages."
